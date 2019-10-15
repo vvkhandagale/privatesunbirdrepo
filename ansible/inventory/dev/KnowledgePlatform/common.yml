@@ -1,0 +1,25 @@
+###### Release 1.14.0, 2.0.0 ########
+
+env: 
+proto: 
+domain_name: 
+ekstep_domain_name:
+
+#bootstrap
+ssh_public_key_deployer:  
+bootstrap_user:
+bootstrap_key_path:
+
+azure_public_container: 
+azure_account_name: 
+environment_id:    # Should be a number of 8 digit like 1000000. This should be unique per environment
+neo4j_zip: neo4j-enterprise-3.3.9-unix.tar.gz       # neo4j enterprise version.zip present in the artifacts folder
+neo4j_home: "{{learner_user_home}}/{{neo4j_dir}}/neo4j-enterprise-3.3.9"   # Change this path to the version of neo4j you will be using
+neo4j_enterprise: "true"
+
+###########  Jenkinspipeline upload artifact ############
+artifacts_container: 
+
+## backup
+backup_azure_storage_account_name:
+backup_azure_storage_access_key: "{{lp_vault_azure_storage_secret}}"
