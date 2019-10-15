@@ -1,54 +1,54 @@
 ################ Core #########################
 [swarm-bootstrap-manager]
-15.0.1.4
+34.93.169.13
 
 # Sunbird zookeeper
 [ingestion-cluster-zookeepers]
-15.0.0.8
+35.201.137.241
 
 [core-cassandra]
-15.0.0.7
+34.93.76.196
 
 [core-es-1]
-15.0.0.50    # This should be elasticsearch master IP of Core
+34.87.79.145    # This should be elasticsearch master IP of Core
 
 [core-es:children]
 core-es-1
 
 ################# LP ##########################
 [search]
-15.0.3.5
+34.93.129.104
 
 [learning]
-15.0.3.11
+34.93.129.104
 
 [composite-search-cluster]
-15.0.2.6
+35.240.152.90
 
 [lp-cassandra]
-15.0.2.7
+35.240.152.90
 
 [dp-cassandra]
-15.0.2.7
+35.240.152.90
 
 [lp-redis]
-15.0.3.11
+34.93.129.104
 
 ################# LPA #########################
 [analytics-api]
-15.0.3.6
+35.201.192.188
 
 [secor]
-15.0.3.15
+35.201.192.188
 
 [spark]
-15.0.3.12
+34.93.119.26
 
 [cassandra]
-15.0.2.7
+35.240.152.90
 
 [postgres]
-15.0.3.17
+35.240.152.90
 
 [lpa:children]
 spark
@@ -58,27 +58,22 @@ cassandra
 ########################### DP #############################
 
 [kafka-indexer]
-15.0.3.8
+35.201.192.188
 
 [influxdb]
-15.0.3.6
-
-[redis]
-15.0.3.5
-
-[redisall:children]
-redis
+#15.0.3.8
+35.201.192.188
 
 [processing-cluster-kafka]
-15.0.3.8
-15.0.3.7
+35.201.137.241
+#15.0.3.7
 
 [processing-cluster-zookeepers]
-15.0.3.8
-15.0.3.7
+35.201.137.241
+#15.0.3.7
 
 [telemetry-search-cluster1]
-15.0.2.6
+35.240.152.90
 
 [telemetry-search-cluster:children]
 telemetry-search-cluster1
@@ -90,10 +85,10 @@ processing-cluster-zookeepers
 telemetry-search-cluster1
 
 [yarn-master]
-15.0.3.10
+34.93.106.37
 
 [yarn-slave]
-15.0.3.13
+34.93.32.185
 
 [yarn:children]
 yarn-master
@@ -129,14 +124,14 @@ ansible_ssh_private_key_file=/var/lib/jenkins/secrets/deployer_ssh_key
 
 ########################### Monitoring ##########################
 [yarn-ps]
-15.0.3.10
-15.0.3.13
+34.93.106.37
+34.93.32.185
 
 [logstash-ps]
-15.0.3.8
+34.93.129.104
 
 [es-ps]
-15.0.2.6
+35.240.152.90
 
 [process-exporter:children]
 yarn-ps
@@ -147,14 +142,14 @@ analytics-ps
 kafka-ps
 
 [secor-ps]
-15.0.3.15
+35.201.192.188
 
 [analytics-ps]
-15.0.3.6
+35.201.192.188
 
 [kafka-ps]
-15.0.3.8
-15.0.3.7
+35.201.137.241
+#15.0.3.7
 
 [all:vars]
 ansible_ssh_user=deployer

@@ -1,25 +1,45 @@
-###### Release 1.14.0, 2.0.0 ########
+### !!! Remove this from public template !!!
+### !!! These are private values only for sunbird/ntp !!!
+instance_name: sunbird
+instance: dev
 
-env: 
-proto: 
-domain_name: 
-ekstep_domain_name:
+## Mahesh have to come back on this
+learning_content_h5p_library_path: https://s3.ap-south-1.amazonaws.com/ekstep-public-dev/content/templates/h5p-library-latest.zip
+
+############## Common ######################
+
+env: dev
+proto: http
+domain_name: sbcloud.tekdi.net
+ekstep_domain_name: https://dev.ekstep.in
 
 #bootstrap
-ssh_public_key_deployer:  
-bootstrap_user:
-bootstrap_key_path:
+ssh_public_key_deployer: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGrZGVHzGbYb6TtyXiyFo+/+cNLJvoe9DHMxh0QmOd40V6FKltk44cbXuqOmltAjM5iAMdoyZQ7sf5nPNi8Cw0OcKrc3j4VuSE3eVIMGVkiNL7mqGs3FxmF2eYsON87qaWWZcLocNDfwEgC+e+XUnQKSGzz4T4rjFUlIj88HsjdW3xLVq0yC/i3NS2LaCJjHhubnKFe6qElFc4pbD/CsQxFYSNUekk1/EUEXCIBMe1rdVb0hfNNl4SksUhcR/9N+TfILU0z4KmixiRg2zM8kXoixq1F5PbtvGhSC6boAVhD0SgebuwtuWH0XXMWYoex6sJl2yjSxN3ld9Y7CprWIKr ttpllt@vowellt1"
+bootstrap_user: vaishali_k
+bootstrap_key_path: /var/lib/jenkins/secrets/ops_ssh_key
+###################### LP ############################
 
-azure_public_container: 
-azure_account_name: 
-environment_id:    # Should be a number of 8 digit like 1000000. This should be unique per environment
-neo4j_zip: neo4j-enterprise-3.3.9-unix.tar.gz       # neo4j enterprise version.zip present in the artifacts folder
-neo4j_home: "{{learner_user_home}}/{{neo4j_dir}}/neo4j-enterprise-3.3.9"   # Change this path to the version of neo4j you will be using
-neo4j_enterprise: "true"
+azure_public_container: sunbirdcloud
+azure_account_name: sunbirdcloud
 
-###########  Jenkinspipeline upload artifact ############
-artifacts_container: 
+
+# This variable should change value per env
+# eg:
+# environment_id: "10000000" # for dev
+# environment_id: "20000000" # for staging env
+
+environment_id: "10000000"
+
+###########  jenkinspipeline upload artifact ############
+artifacts_container: artifacts
+
+
+neo4j_zip: neo4j-community-3.5.9-unix.tar.gz       # neo4j enterprise version.zip present in the artifacts folder
+neo4j_home: "{{learner_user_home}}/{{neo4j_dir}}/neo4j-community-3.5.9"   # Change this path to the version of neo4j you will be using
+neo4j_enterprise: "false"
 
 ## backup
-backup_azure_storage_account_name:
-backup_azure_storage_access_key: "{{lp_vault_azure_storage_secret}}"
+backup_azure_storage_account_name: sunbirdcloud
+### overriding backup secret
+backup_azure_storage_access_key: KFmEHf15wSKd474iiIFTlfiQuH3ZkrOKtDWSbbpJOAdWg/VJOi1yLjgnruBzdWmUu15FIRIokPwy4uMNl+BaSA== # "{{lp_vault_backup_azure_storage_secret}}"
+

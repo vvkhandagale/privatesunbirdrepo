@@ -1,15 +1,16 @@
 # Alert manager nodes which should be clustered
 # This values should be one of any manager node, if you've multinode cluster
 [alert-manager:children]
-# By default this value can be swarm-manager-1 or 2 or n; but for a single 
+# By default this value can be swarm-manager-1 or 2 or n; but for a single
 # cluster it should be one value.
 # If you have multiple cluster you can list all ips below one by one
+
 swarm-manager-1
 
-[swarm-manager-1] 
-18.0.0.15 swarm_master=true
+[swarm-manager-1]
+10.148.0.8 swarm_master=true
 
-# This host will make sure prometheus for all stateful services 
+# This host will make sure prometheus for all stateful services
 # will run on a single node, as it has storage dependancy
 # By default this host is same as docker swarm prometheus
 [swarm-agent-for-prometheus-stateful:children]
@@ -19,34 +20,40 @@ swarm-agent-for-prometheus
 swarm-manager-1
 
 [keycloak-1]
-18.0.0.9
+10.128.0.7
 
 [keycloak:children]
 keycloak-1
 
 [log-es-1]
-18.0.0.15 node_name=refactor-log-es-1 es_etc_node_master=true es_etc_node_data=true
+10.148.0.8 node_name=refactor-log-es-1 es_etc_node_master=true es_etc_node_data=true
 
 [log-es:children]
 log-es-1
 
 [swarm-agent-for-prometheus-1]
-18.0.0.15
+10.148.0.8
 
 [swarm-agent-for-prometheus:children]
 swarm-agent-for-prometheus-1
+
+[swarm-agent-for-grafana-1]
+10.148.0.8
+
+[swarm-agent-for-grafana:children]
+swarm-agent-for-grafana-1
 
 [swarm-agent-for-prometheus-stateful:children]
 swarm-agent-for-prometheus
 
 [swarm-dashboard-1]
-18.0.0.15
+10.148.0.8
 
 [swarm-dashboard:children]
 swarm-dashboard-1
 
 [swarm-agent-dashboard-1]
-18.0.0.15
+10.148.0.8
 
 [swarm-agent-dashboard:children]
 swarm-agent-dashboard-1
@@ -55,10 +62,10 @@ swarm-agent-dashboard-1
 swarm-agent-dashboard
 
 [swarm-agent-for-alertmanager-1]
-18.0.0.15
+10.148.0.8
 
 [es-1]
-18.0.0.9 es_instance_name=es-1 es_etc_node_master=true es_etc_node_data=true
+10.128.0.7 es_instance_name=es-1 es_etc_node_master=true es_etc_node_data=true
 
 [es-backup:children]
 es-1
@@ -70,19 +77,19 @@ log-es-1
 es-1
 
 [cassandra-1]
-18.0.0.9
+10.128.0.7
 
 [cassandra:children]
 cassandra-1
 
 [postgresql-master-1]
-18.0.0.9
+10.128.0.7
 
 [postgresql-master:children]
 postgresql-master-1
 
 [postgresql-slave-1]
-18.0.0.9
+10.128.0.7
 
 [postgresql-slave:children]
 postgresql-slave-1
@@ -92,25 +99,25 @@ postgresql-slave
 postgresql-master
 
 [kafka-1]
-18.0.0.13 kafka_id=1
+10.128.0.8 kafka_id=1
 
 [processing-cluster-kafka]
-18.0.0.13
+10.128.0.8
 
 [telemetry-search-cluster]
-18.0.0.13
+10.128.0.8
 
 [kafka:children]
 kafka-1
 
 [processing-cluster-zookeepers]
-18.0.0.50              # Zookeeper IP of processing cluster in Data pipeline
+10.128.0.8             # Zookeeper IP of processing cluster in Data pipeline
 
 [zookeeper:children]
 processing-cluster-zookeepers
 
 [lp-redis]
-18.0.0.51              # Redis master IP of Knowledge platform
+10.128.0.9             # Redis master IP of Knowledge platform
 
 [local]
 localhost
